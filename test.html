@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="button" class="btn" id="btn" value="SEARCH">
+    </div>
+
+    <div class="table-container space" id="table-container">
+        <table id="search-results">
+            <tr>
+              <th>Artist</th>
+              <th>Song</th>
+              <th>Album</th>
+              <th>Rating</th>
+              <th colspan="3">Genre</th>
+            </tr>
+
+        </table>    
+    </div><!--end table-container div-->
+</body>
+<script>
+   const lib = [  
+    {id:1, artist:"fela", song:"Back to sender", album:"MOC Ministry of Corruption", genre:"Jazz", albumart:"./images/fela.jpg", rating:'5'},
+    {id:2,artist:"Drake", song:"Toosie Slide", album:"DRIZZY", genre:"2020", albumart:"./images/drake.jpg", rating:'5'},
+    {id:3,artist:"J Cole", song:"Middle Child", album:"Middle Child", genre:"Hip Hop", albumart:"./images/jcole.jpg", rating:'5'},
+    {id:4,artist:"Dua Lipa", song:"Dont start now", album:"Start Now", genre:"Pop", albumart:"4", rating:'4'}, 
+    {id:5,artist:"Alicia Keys", song:"Mex7", album:"Alicia", genre:"Hip Hop", albumart:"5", rating:'3'}, 
+    {id:6,artist:"The Game, J. Colem JMSN", song:"Pray", album:"Jesus Piece (Deluxe)", genre:"Hip Hop", albumart:"6", rating:'5'},
+    {id:7,artist:"The Weekend", song:"Blinding Lights", album:"Lights", genre:"Classical", albumart:"7", rating:'2'},
+    {id:8,artist:"Blacked Eyed Peas, Ozuna, J. Rey Soul", song:"MAMACITA", album:"Single", genre:"Hip Hop", albumart:"8", rating:'4'},
+    {id:9,artist:"Ed Sheeran", song:"Shape of You", album:"Divide (Deluxe)", genre:"Pop", albumart:"9", rating:'5'},
+    {id:10,artist:"Maroon 5", song:"Memories", album:"Maroon 5", genre:"Classical", albumart:"10", rating:'4'}
+    ];
+
+    const searchResults = document.getElementById('search-results');
+    const searchBtn = document.getElementById('btn');
+    const tableDiv = document.getElementById('table-container');
+    
+    window.addEventListener('load', () => {
+        console.log('window loaded')
+        tableDiv.style.visibility = 'hidden';
+    });
+        
+    //on click, if results > 0, addResults(res) else 'No results found'
+    searchBtn.addEventListener('click', () => {
+
+        if(results.length > 0){
+            //if search returns result > 0, show the div
+            tableDiv.style.visibility = 'visible';
+            addResults(results);
+        }
+        
+    });
+
+    //get results
+    const results = [ {id:6,artist:"The Game, J. Colem JMSN", song:"Pray", album:"Jesus Piece (Deluxe)", genre:"Hip Hop", albumart:"6", rating:'5'},
+            {id:7,artist:"The Weekend", song:"Blinding Lights", album:"Lights", genre:"Classical", albumart:"7", rating:'2'},
+            {id:8,artist:"Black Eyed Peas, Ozuna, J. Rey Soul", song:"MAMACITA", album:"Single", genre:"Hip Hop", albumart:"8", rating:'4'},
+            {id:9,artist:"Ed Sheeran", song:"Shape of You", album:"Divide (Deluxe)", genre:"Pop", albumart:"9", rating:'5'} ];
+   
+
+    function addResults(results) {
+        //for each result, add a new row
+        results.forEach(element => {
+            const newRow = document.createElement('tr');
+            newRow.setAttribute("id", element.id);
+            newRow.className = "tableRow";
+            newRow.innerHTML = `<td>    ${element.artist}   </td>       <td>    ${element.song}     </td>
+                                <td>    ${element.album}    </td>       <td>    ${element.rating}   </td>
+                                <td>    ${element.genre}</td>
+                                <td>    <input type="button" class="btn-download" value="Download" id="${element.id}">  </td>
+                                <td>    <input type="button" class="btn-fav" value="Add to Favorites" id="${element.id}">  </td>`;
+            searchResults.appendChild(newRow);
+        });
+    }
+
+    function getAlbumArt(event) {
+        //id for table row of clicked button *****add id to row when adding the search records on the DOM
+        let fav = event.target.parentNode.parentNode.id;
+        //get matching record on library
+        let result = results.filter(record => record.id == fav)[0].albumart;
+        //console.log(result);
+        console.log("result >>>", result)
+        return result;
+    }
+
+    document.addEventListener('click',function(e){
+        if(e.target && e.target.className== 'btn-fav'){
+            //do something
+            getAlbumArt(e)
+        }
+    });
+
+</script>
+</html>

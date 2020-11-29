@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>title</title>
+<link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+
+<div class="main-container">
+
+  <div class="logo space">
+    <img src="images/musicbrains_logo.jpg" alt="">
+  </div>
+  
+  <div class="form-container space">
+    <form action="#" id="search-form">
+      
+      <div class="row">
+        <label for="artist">Artist:</label>
+        <input class="search-option" type="text" id="artist" autofocus>
+      </div>
+      <div class="row">
+        <label for="song">Song:</label>
+        <input class="search-option" type="text" id="song">
+      </div>
+      <div class="row">
+        <label for="album">Album:</label>
+        <input class="search-option" type="text" id="album">
+      </div>
+      <div class="row">
+        <label for="genre">Genre:</label>
+        <input list="genres" id="genre" name="genre" class="inputField search-option" />
+        <datalist id="genres">
+          <option value="Hip Hop">
+          <option value="Pop">
+          <option value="Jazz">
+          <option value="Classical">
+          <option value="Afrobeats">
+          <option value="All">
+        </datalist>
+      </div>
+      
+      <div class="row buttons">
+        <button class="btn" id="btn-search" >Search</button>
+        <button type="reset" class="btn" id="btn-reset">Reset</button>
+      </div>
+      
+    </form>
+  </div><!--end form-container div-->
+  
+  <div class="favorites space"> </div><!--end favorites div-->
+  
+  <div class="table-container space" id="table-container">
+    <table id="search-results">
+      <tr>
+        <th>Artist</th>
+        <th>Song</th>
+        <th>Album</th>
+        <th>Rating</th>
+        <th colspan="3">Genre</th>
+      </tr> 
+
+    </table>    
+  </div><!--end table-container div-->
+</div><!--end main-container -->	
+
+  <script src="script.js"></script>
+  </body>
+</html>
