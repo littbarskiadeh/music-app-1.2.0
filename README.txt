@@ -1,5 +1,3 @@
-Student number - 101339447
-Name - Littbarski Adeh
 Fullstack II final Assignment
 
 Sample search data:
